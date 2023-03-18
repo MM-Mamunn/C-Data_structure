@@ -10,19 +10,21 @@ int s ,r;
 s= t.size();
 r=p.size();
 
-for(int i =1 ;i<=(s-r+1);i++) 
+for(int i =0 ;i<=(s-r);i++) 
 { bool a=false;
-    for(int j =1;j<=r;j++)
+    for(int j =0;j<r;j++)
     {
-        if(p[j] != t [i+j-1])
+        if(p[j] != t [i+j])
        {
        a = true;
        }
     }
     if(a == true)
     continue;
-    index = i;
+    
+    index = i+1;
     break;
+    
 }
 cout<<index<<endl;
 }
