@@ -57,6 +57,9 @@ public:
     }
     void top()
     {
+        if(f == r)
+            cout<<"0\n";
+        else
         cout<<arr[f]<<endl;
     }
 };
