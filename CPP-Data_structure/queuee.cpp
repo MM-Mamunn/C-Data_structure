@@ -43,6 +43,13 @@ public:
         }
         cout<<"f r "<<f<<" "<<r<<endl;
     }
+    int sizee()
+    { if( r<f)
+        return ((n - (f-r)) +1);
+      else
+        return (r-f);
+    }
+
     void show()
     {
         int i =f;
@@ -62,11 +69,12 @@ public:
         else
         cout<<arr[f]<<endl;
     }
+
 };
 int main()
 {
     int k;
-    queuee<int> q(5);
+    queuee<int> q(4);
 
 
     for(;;)
@@ -77,12 +85,12 @@ int main()
             int j;
             cin>>j;
             q.push(j);
-            q.top();
+            cout<<q.sizee()<<endl;
         }
         else
         {
             q.pop();
-            q.top();
+            cout<<q.sizee()<<endl;
         }
     }
     return 0;
