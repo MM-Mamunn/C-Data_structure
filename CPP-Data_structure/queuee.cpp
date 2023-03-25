@@ -1,3 +1,4 @@
+
 #include<bits/stdc++.h>
 #include <numeric>
 using namespace std;
@@ -74,22 +75,37 @@ public:
 int main()
 {
     int k;
-    queuee<int> q(4);
+    queuee<int> q(5);
+   q.top();
 
 
     for(;;)
     {
+        cout<<"Enter 1 for push\nEnter 2 for pop\nEnter 3 for size\nEnter 4 for top\n";
         cin>>k;
         if( k == 1)
         {
             int j;
             cin>>j;
             q.push(j);
-            cout<<q.sizee()<<endl;
+            //cout<<q.sizee()<<endl;
+           q.top();
+
         }
-        else
+        else if(k == 2)
         {
             q.pop();
+         //   cout<<q.sizee()<<endl;
+
+            //  q.top();
+        }
+        else if( k == 4)
+        {
+            q.top();
+        }
+
+          else if( k == 3)
+        {
             cout<<q.sizee()<<endl;
         }
     }
