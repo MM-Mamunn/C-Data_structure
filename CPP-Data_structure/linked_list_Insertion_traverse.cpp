@@ -2,6 +2,7 @@
 #include <numeric>
 using namespace std;
 
+
 class node{
   public:
   int info;
