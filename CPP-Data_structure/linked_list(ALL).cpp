@@ -67,36 +67,23 @@ void insert(node *start, int index, int val)
   node *prev = start;
   int index_check = 0;
 
-  // while (ptr->link != 0 && index_check < index)
-  // {
-  //   index_check += 1;
-  //   prev = ptr;
-  //   ptr = ptr->link;
-  // }
+ while(ptr->link != 0)
+ {
+  index_check+=1;
+  if(index_check==index)
+  break;
+  ptr=ptr->link;
+ }
 
- for(;;)
-  {
-    index_check += 1; 
-    if(index_check== index);
-    break;
-    if(ptr->link == 0)
-      break;
-    ptr = ptr->link;
-   
-  }
 
   //cout<<"ptr-link "<<ptr->link<<" indexchc "<<index_check<<" index "<<index<< endl;
-  if (ptr->link == 0 &&  index_check < index || ptr->info == 0 &&  index == 1 )
+  if (ptr->link == 0 &&  index_check+1 != index || start->info == 0  )
   {
     cout << "index " << index << " in check " << index_check << endl;
     cout << "Location not found\n";
     return;
   }
-    if (start->info == 0)
-  {
-    insert_head(start, val);
-    return;
-  }
+  
   //else
   node *n = new node(val);
   n->link = ptr->link;
@@ -111,22 +98,24 @@ int main()
 
   /// insert at tail==start
   // display(start);
-  insert_tail(start, 3);
-  display(start);
-  insert_tail(start, 4);
-  display(start);
-  // insert_tail(start, 5);
+  // insert_tail(start, 3);
   // display(start);
+  // insert_tail(start, 4);
+  // display(start);
+  insert_tail(start, 5);
+  display(start);
   /// insert at tail== stop and
 
   /// insert start
   //display(start);
- insert(start, 1, 9);
+//  insert(start, 1, 9);
+//   display(start);
+  insert(start, 1,7);
   display(start);
-  insert(start, 1, 4);
+  insert(start, 2, 4);
   display(start);
-  // insert(start, 1, 5);
-  // display(start);
+  insert(start, 4, 1);
+  display(start);
   // insert(start, 1, 6);
   // display(start);
   // insert(start, 2, 7);
