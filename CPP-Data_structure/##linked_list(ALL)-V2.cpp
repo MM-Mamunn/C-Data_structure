@@ -1,6 +1,6 @@
-///here start it self the first element of the list
-///you can follow the 2nd version from the folder
-
+///here start->link is the address of the first node.
+///start used to store the location of the first node and does'nt 
+///have any funtion to store data
 
 #include <bits/stdc++.h>
 #include <numeric>
@@ -19,7 +19,7 @@ public:
 
 void display(node *start)
 {
-  node *ptr = start;
+  node *ptr = start->link;
   cout << endl;
 
   while (ptr != 0)
@@ -36,28 +36,9 @@ void insert_head(node *start, int val)
 {
 
   node *n = new node(val);
-  node *temp = new node(val);
-  node *ptr = start;
-  int count = 0;
-  while (ptr->link != 0)
-  {
-    count += 1;
-    ptr = ptr->link;
-  }
-  if (count == 0 && start->info == 0)
-  {
-    start->info = n->info;
-    return;
-  }
-  // else
-  n->link = start;
-  temp->link = start->link;
-  start->link = n;
-  n->link = temp->link;
-
-  temp->info = start->info;
-  start->info = n->info;
-  n->info = temp->info;
+ node *ptr = start;
+ n->link=start->link;
+ start->link= n;
 
   return;
 }
@@ -66,9 +47,9 @@ void insert_head(node *start, int val)
 void insert_tail(node *start, int val)
 {
   node *n = new node(val);
-  node *ptr = start;
+  node *ptr = start->link;
 
-  if (start->info == 0)
+  if (start->link == 0)
   {
     insert_head(start, val);
     return;
@@ -82,11 +63,12 @@ void insert_tail(node *start, int val)
 // 1,2  2,3  3,4  4,5  5,0
 void insert(node *start, int index, int val)
 {
-  node *ptr = start;
+  node *ptr = start->link;
   int index_check = 0;
-  if(index == 0 && ptr->link == 0 && start->info ==0)
+  if(index == 0 && ptr->link == 0 )
   {
     insert_head(start,val);
+    return;
   }
   while (ptr->link != 0)
   {
@@ -96,7 +78,7 @@ void insert(node *start, int index, int val)
     ptr = ptr->link;
   }
   // cout<<"ptr-link "<<ptr->link<<" indexchc "<<index_check<<" index "<<index<< endl;
-  if (ptr->link == 0 && index_check + 1 != index || start->info == 0)
+  if (ptr->link == 0 && index_check + 1 != index)
   {
     cout << "Location not found\n";
     return;
@@ -110,8 +92,8 @@ void insert(node *start, int index, int val)
 // 1,2  2,3  3,4  4,5  5,0
 void DELETE(node *start, int index)
 {
-  node *ptr = start;
-  node *prev = start;
+  node *ptr = start->link;
+  node *prev = start->link;
   int index_check = 0;
 
   while (ptr->link != 0)
@@ -123,20 +105,17 @@ void DELETE(node *start, int index)
     ptr = ptr->link;
   }
   // cout<<"ptr-link "<<ptr->link<<" indexchc "<<index_check<<" index "<<index<< endl;
-  if (ptr->link == 0 && index_check + 1 != index || start->info == 0)
+  if (ptr->link == 0 && index_check + 1 != index )
   {
     cout << "Location not found\n";
     return;
   }
-  if (index_check == 0 && start->link == 0)
-  {
-    start->info = 0;
-    return;
-  }
+ 
   if (index == 1)
   {
-    start->info = start->link->info;
-    start->link = start->link->link;
+    // start->info = start->link->info;
+    // start->link = start->link->link;
+    start->link= ptr->link;
     return;
   }
   prev->link = ptr->link;
