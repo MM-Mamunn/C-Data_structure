@@ -61,6 +61,7 @@ void insert_tail(node *start, int val)
 }
 
 // 1,2  2,3  3,4  4,5  5,0
+//Recommended alternative given below
 void insert(node *start, int index, int val)
 {
   node *ptr = start->link;
@@ -178,3 +179,37 @@ int main()
      }
 }
 }
+
+
+
+///alternative insert(Recommended)
+
+void insert(node *start, int index, int val)
+// {
+//   node *ptr = start->link;
+//   node *prev = start->link;
+//   int index_check = 0;
+//   if(index == 0 && start->info == 0 )
+//   {
+//     insert_head(start,val);
+//     return;
+//   }
+//   while (ptr != 0)
+//   {
+//     index_check += 1;
+//     prev = ptr;
+//     ptr = ptr->link;
+//      if (index_check == index)
+//       break;
+//   }
+//   // cout<<"ptr-link "<<ptr->link<<" indexchc "<<index_check<<" index "<<index<< endl;
+//   if (ptr == 0 && index_check != index)
+//   {
+//     cout << "Location not found\n";
+//     return;
+//   }
+//   // else
+//   node *n = new node(val);
+//   n->link = prev->link;
+//   prev->link = n;
+// }
