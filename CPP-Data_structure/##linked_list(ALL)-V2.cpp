@@ -184,7 +184,7 @@ int main()
 
 ///alternative insert(Recommended)
 
-void insert(node *start, int index, int val)
+//void insert(node *start, int index, int val)
 // {
 //   node *ptr = start->link;
 //   node *prev = start->link;
