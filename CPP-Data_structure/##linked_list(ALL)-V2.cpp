@@ -36,7 +36,6 @@ void insert_head(node *start, int val)
 {
 
   node *n = new node(val);
- node *ptr = start;
  n->link=start->link;
  start->link= n;
 
@@ -97,17 +96,19 @@ void DELETE(node *start, int index)
 {
   node *ptr = start->link;
   node *prev = start->link;
+  node *prev2 = start->link;
   int index_check = 0;
 
   while (ptr != 0)
   {
     index_check += 1;
+    prev2 = prev;
     prev = ptr;
     ptr = ptr->link;
      if (index_check == index)
       break;
   }
-  if (ptr == 0 && index_check != index )
+  if (ptr == 0 && index_check != index || index == 0)
   {
     cout << "Location not found\n";
     return;
@@ -124,8 +125,9 @@ void DELETE(node *start, int index)
   {
     start->link=start->link->link;
     //or start->link=ptr;
+    return;
   }
-  prev->link = ptr;
+  prev2->link = ptr;
 }
 
 int main()
