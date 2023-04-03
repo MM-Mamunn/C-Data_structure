@@ -61,35 +61,37 @@ void insert_tail(node *start, int val)
 }
 
 // 1,2  2,3  3,4  4,5  5,0
-//Recommended alternative given below
+//alternative given below-that is not recommended
 void insert(node *start, int index, int val)
 {
   node *ptr = start->link;
+  node *prev = start->link;
   int index_check = 0;
-  if(index == 0 && ptr->link == 0 )
+  if(index == 0)
   {
     insert_head(start,val);
     return;
   }
-  while (ptr->link != 0)
+  while (ptr != 0)
   {
     index_check += 1;
-    if (index_check == index)
-      break;
+    prev = ptr;
     ptr = ptr->link;
+     if (index_check == index)
+      break;
   }
-  // cout<<"ptr-link "<<ptr->link<<" indexchc "<<index_check<<" index "<<index<< endl;
-  if (ptr->link == 0 && index_check + 1 != index)
+  if (ptr == 0 && index_check != index)
   {
     cout << "Location not found\n";
     return;
   }
-
   // else
   node *n = new node(val);
-  n->link = ptr->link;
-  ptr->link = n;
+  n->link = prev->link;
+  prev->link = n;
 }
+
+
 // 1,2  2,3  3,4  4,5  5,0
 void DELETE(node *start, int index)
 {
@@ -97,29 +99,33 @@ void DELETE(node *start, int index)
   node *prev = start->link;
   int index_check = 0;
 
-  while (ptr->link != 0)
+  while (ptr != 0)
   {
     index_check += 1;
-    if (index_check == index)
-      break;
     prev = ptr;
     ptr = ptr->link;
+     if (index_check == index)
+      break;
   }
-  // cout<<"ptr-link "<<ptr->link<<" indexchc "<<index_check<<" index "<<index<< endl;
-  if (ptr->link == 0 && index_check + 1 != index )
+  if (ptr == 0 && index_check != index )
   {
     cout << "Location not found\n";
     return;
   }
  
-  if (index == 1)
+  if (ptr == 0 && index == 1)
   {
     // start->info = start->link->info;
     // start->link = start->link->link;
-    start->link= ptr->link;
+    start->link=0; 
     return;
   }
-  prev->link = ptr->link;
+  if(index == 1)
+  {
+    start->link=start->link->link;
+    //or start->link=ptr;
+  }
+  prev->link = ptr;
 }
 
 int main()
@@ -181,35 +187,32 @@ int main()
 }
 
 
-
-///alternative insert(Recommended)
-
-//void insert(node *start, int index, int val)
+///alternative of insert- not recommended
+// void insert(node *start, int index, int val)
 // {
 //   node *ptr = start->link;
-//   node *prev = start->link;
 //   int index_check = 0;
-//   if(index == 0 && start->info == 0 )
+//   if(index == 0 && ptr->link == 0 )
 //   {
 //     insert_head(start,val);
 //     return;
 //   }
-//   while (ptr != 0)
+//   while (ptr->link != 0)
 //   {
 //     index_check += 1;
-//     prev = ptr;
-//     ptr = ptr->link;
-//      if (index_check == index)
+//     if (index_check == index)
 //       break;
+//     ptr = ptr->link;
 //   }
 //   // cout<<"ptr-link "<<ptr->link<<" indexchc "<<index_check<<" index "<<index<< endl;
-//   if (ptr == 0 && index_check != index)
+//   if (ptr->link == 0 && index_check + 1 != index)
 //   {
 //     cout << "Location not found\n";
 //     return;
 //   }
+
 //   // else
 //   node *n = new node(val);
-//   n->link = prev->link;
-//   prev->link = n;
+//   n->link = ptr->link;
+//   ptr->link = n;
 // }
