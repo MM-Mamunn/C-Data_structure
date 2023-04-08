@@ -174,3 +174,69 @@ int main()
     }
 
 }
+
+
+
+
+
+///8.4.23
+#include<bits/stdc++.h>
+#include <numeric>
+using namespace std;
+
+
+void  Merge(int arr, l, m, r)
+{
+    int lba = l,lbb= m+1,uba= m,ubb= r;
+    int ptr1=l,ptr2 = m+1;
+    while(ptr1<= m && ptr <= r)
+    {
+        int temp;
+        if(arr[ptr1] >arr[ptr2])
+        {
+            swap(arr[ptr1] >arr[ptr2]);
+            ptr2+= 1;
+        }
+        else
+        {
+                swap(arr[ptr1] >arr[ptr2]);
+            ptr1+= 1;
+        }
+
+        }
+    }
+
+}
+
+void MERGESORT(int arr[],int l ,int r)
+{
+    int m = l + (r-l)/2 ;
+    int b[r];
+    //m= (l + ((r – l)/2));
+    if(r>l){
+     MERGESORT(arr, l, m);
+     MERGESORT(arr, m+1, r);
+    }
+
+
+}
+int main()
+{
+ int n;
+ cout<<"Enter size of array: ";
+ cin>>n;
+ int arr[n+1],b[n+1];
+  for(int i =1;i<=n;i++)
+ {
+     cin>>arr[i];
+ }
+ int l = 1,r = n;
+ MERGESORT(arr,l,r);
+
+ for(int i = 1;i<= n ;i++)
+ {
+     cout<<arr[i]<<" ";
+ }
+
+}
+
