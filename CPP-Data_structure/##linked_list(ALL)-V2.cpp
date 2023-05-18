@@ -1,6 +1,3 @@
-///here start->link is the address of the first node.
-///start used to store the location of the first node and does'nt 
-///have any funtion to store data
 
 #include <bits/stdc++.h>
 #include <numeric>
@@ -71,24 +68,55 @@ void insert(node *start, int index, int val)
     insert_head(start,val);
     return;
   }
-  while (ptr != 0)
+  while (ptr->link != 0)
   {
     index_check += 1;
-    prev = ptr;
-    ptr = ptr->link;
      if (index_check == index)
       break;
+    ptr = ptr->link;
+
   }
-  if (ptr == 0 && index_check != index)
+  if (ptr->link == 0 && index_check+1 != index)
   {
     cout << "Location not found\n";
     return;
   }
   // else
   node *n = new node(val);
-  n->link = prev->link;
-  prev->link = n;
+  n->link = ptr->link;
+  ptr->link = n;
 }
+
+
+//alternative insert at any index
+//void insert(node *start, int index, int val)
+//{
+//  node *ptr = start->link;
+//  node *prev = start->link;
+//  int index_check = 0;
+//  if(index == 0)
+//  {
+//    insert_head(start,val);
+//    return;
+//  }
+//  while (ptr != 0)
+//  {
+//    index_check += 1;
+//    prev = ptr;
+//    ptr = ptr->link;
+//     if (index_check == index)
+//      break;
+//  }
+//  if (ptr == 0 && index_check != index)
+//  {
+//    cout << "Location not found\n";
+//    return;
+//  }
+//  // else
+//  node *n = new node(val);
+//  n->link = prev->link;
+//  prev->link = n;
+//}
 
 
 // 1,2  2,3  3,4  4,5  5,0
@@ -113,12 +141,12 @@ void DELETE(node *start, int index)
     cout << "Location not found\n";
     return;
   }
- 
+
   if (ptr == 0 && index == 1)
   {
     // start->info = start->link->info;
     // start->link = start->link->link;
-    start->link=0; 
+    start->link=0;
     return;
   }
   if(index == 1)
@@ -175,7 +203,7 @@ int main()
     else if(choice == 4)
      {
       int index;
-      
+
        cout<<"Enter index where to delete: ";
        cin>>index;
        DELETE(start,index);
@@ -187,34 +215,3 @@ int main()
      }
 }
 }
-
-
-///alternative of insert- not recommended
-// void insert(node *start, int index, int val)
-// {
-//   node *ptr = start->link;
-//   int index_check = 0;
-//   if(index == 0 && ptr->link == 0 )
-//   {
-//     insert_head(start,val);
-//     return;
-//   }
-//   while (ptr->link != 0)
-//   {
-//     index_check += 1;
-//     if (index_check == index)
-//       break;
-//     ptr = ptr->link;
-//   }
-//   // cout<<"ptr-link "<<ptr->link<<" indexchc "<<index_check<<" index "<<index<< endl;
-//   if (ptr->link == 0 && index_check + 1 != index)
-//   {
-//     cout << "Location not found\n";
-//     return;
-//   }
-
-//   // else
-//   node *n = new node(val);
-//   n->link = ptr->link;
-//   ptr->link = n;
-// }
