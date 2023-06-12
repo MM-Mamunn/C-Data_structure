@@ -96,7 +96,7 @@ public:
     void top()
     {
         if(f == 0)
-            cout<<"0\n";
+            cout<<"empty\n";
         else
             cout<<arr[f]<<endl;
     }
